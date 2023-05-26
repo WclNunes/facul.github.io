@@ -1,83 +1,152 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Meu Site Demo, aproveite a estadia!</title>
-	<style>
-		body {
-			background-color: #f2f2f2;
-			font-family: Arial, sans-serif;
-			margin: 0;
-			padding: 0;
-		}
+  <title>Exemplo de Funções JavaScript - Primeiro Site</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
 
-		header {
-			background-color: #333;
-			color: #fff;
-			padding: 20px;
-			text-align: center;
-		}
+    h1 {
+      margin-bottom: 10px;
+    }
 
-		h1 {
-			margin: 0;
-		}
+    label {
+      display: block;
+      margin-top: 10px;
+    }
 
-		nav {
-			background-color: #444;
-			color: #fff;
-			padding: 10px;
-		}
+    button {
+      margin-top: 10px;
+    }
 
-		nav ul {
-			list-style-type: none;
-			margin: 0;
-			padding: 0;
-		}
-
-		nav li {
-			display: inline-block;
-			margin-right: 20px;
-		}
-
-		nav a {
-			color: #fff;
-			text-decoration: none;
-			padding: 5px;
-		}
-
-		nav a:hover {
-			background-color: #666;
-		}
-
-		section {
-			padding: 20px;
-			text-align: center;
-		}
-
-		footer {
-			background-color: #333;
-			color: #fff;
-			padding: 20px;
-			text-align: center;
-		}
-	</style>
+    .result {
+      margin-top: 20px;
+    }
+  </style>
 </head>
 <body>
-	<header>
-		<h1>Meu Site Demo</h1>
-	</header>
-	<nav>
-		<ul>
-			<li><a href="#">Home</a></li>
-			<li><a href="#">Sobre</a></li>
-			<li><a href="#">Contato</a></li>
-		</ul>
-	</nav>
-	<section>
-		<h2>Bem-vindo ao Meu Site Demo</h2>
-		<p>Este é um exemplo simples de site criado com HTML e CSS.</p>
-	</section>
-	<footer>
-		<p>&copy; 2023 Meu Site Demo. Todos os direitos reservados.</p>
-	</footer>
+  <h1>Exemplo de Funções JavaScript</h1>
+
+  <h2>1. Encontrar o maior e o menor valor</h2>
+  <label for="numbers">Digite cinco números separados por vírgula:</label>
+  <input type="text" id="numbers">
+  <button onclick="maiorMenor()">Encontrar</button>
+  <div id="maiorMenorResult" class="result"></div>
+
+  <h2>2. Verificar se um caractere é vogal</h2>
+  <label for="character">Digite um caractere:</label>
+  <input type="text" id="character">
+  <button onclick="vogal()">Verificar</button>
+  <div id="vogalResult" class="result"></div>
+
+  <h2>3. Imprimir números pares em um intervalo e calcular o somatório</h2>
+  <label for="lower">Limite inferior:</label>
+  <input type="text" id="lower">
+  <label for="upper">Limite superior:</label>
+  <input type="text" id="upper">
+  <button onclick="limites()">Calcular</button>
+  <div id="limitesResult" class="result"></div>
+
+  <h2>4. Ordenar três valores inteiros em ordem crescente</h2>
+  <label for="value1">Valor 1:</label>
+  <input type="text" id="value1">
+  <label for="value2">Valor 2:</label>
+  <input type="text" id="value2">
+  <label for="value3">Valor 3:</label>
+  <input type="text" id="value3">
+  <button onclick="ordem()">Ordenar</button>
+  <div id="ordemResult" class="result"></div>
+
+  <h2>5. Verificar se um valor é positivo ou negativo</h2>
+  <label for="number">Digite um número:</label>
+  <input type="text" id="number">
+  <button onclick="positivoNegativo()">Verificar</button>
+  <div id="positivoNegativoResult" class="result"></div>
+
+  <h2>6. Verificar se um valor é par ou ímpar</h2>
+  <label for="integer">Digite um número inteiro:</label>
+  <input type="text" id="integer">
+  <button onclick="parImpar()">Verificar</button>
+  <div id="parImparResult" class="result"></div>
+
+  <script>
+    function maiorMenor() {
+      var numbersInput = document.getElementById("numbers");
+      var numbers = numbersInput.value.split(",").map(Number);
+      var maior = Math.max(...numbers);
+      var menor = Math.min(...numbers);
+      var resultDiv = document.getElementById("maiorMenorResult");
+      resultDiv.innerHTML = "Maior valor: " + maior + "<br>Menor valor: " + menor;
+    }
+
+    function vogal() {
+      var characterInput = document.getElementById("character");
+      var character = characterInput.value.toLowerCase();
+      var vogais = ['a', 'e', 'i', 'o', 'u'];
+      var resultDiv = document.getElementById("vogalResult");
+      if (vogais.includes(character)) {
+        resultDiv.innerHTML = "O caractere é uma vogal.";
+      } else {
+        resultDiv.innerHTML = "O caractere não é uma vogal.";
+      }
+    }
+
+    function limites() {
+      var lowerInput = document.getElementById("lower");
+      var upperInput = document.getElementById("upper");
+      var lower = parseInt(lowerInput.value);
+      var upper = parseInt(upperInput.value);
+      var somatorio = 0;
+      var resultDiv = document.getElementById("limitesResult");
+      resultDiv.innerHTML = "";
+
+      for (var i = lower + 1; i < upper; i++) {
+        if (i % 2 === 0) {
+          resultDiv.innerHTML += i + "<br>";
+          somatorio += i;
+        }
+      }
+      resultDiv.innerHTML += "Somatório dos números pares: " + somatorio;
+    }
+
+    function ordem() {
+      var value1Input = document.getElementById("value1");
+      var value2Input = document.getElementById("value2");
+      var value3Input = document.getElementById("value3");
+      var value1 = parseInt(value1Input.value);
+      var value2 = parseInt(value2Input.value);
+      var value3 = parseInt(value3Input.value);
+      var resultDiv = document.getElementById("ordemResult");
+      var valores = [value1, value2, value3];
+      valores.sort(function(a, b) {
+        return a - b;
+      });
+      resultDiv.innerHTML = "Valores ordenados em ordem crescente: " + valores.join(", ");
+    }
+
+    function positivoNegativo() {
+      var numberInput = document.getElementById("number");
+      var number = parseInt(numberInput.value);
+      var resultDiv = document.getElementById("positivoNegativoResult");
+      if (number >= 0) {
+        resultDiv.innerHTML = "O número é positivo.";
+      } else {
+        resultDiv.innerHTML = "O número é negativo.";
+      }
+    }
+
+    function parImpar() {
+      var integerInput = document.getElementById("integer");
+      var integer = parseInt(integerInput.value);
+      var resultDiv = document.getElementById("parImparResult");
+      if (integer % 2 === 0) {
+        resultDiv.innerHTML = "O número é par.";
+      } else {
+        resultDiv.innerHTML = "O número é ímpar.";
+      }
+    }
+  </script>
 </body>
 </html>
